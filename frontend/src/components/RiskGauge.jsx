@@ -1,15 +1,21 @@
 import React from 'react';
 
-export default function RiskGauge({ probability, riskLevel, label, color }) {
+export default function RiskGauge({ probability, riskLevel, label, color, limiarKS = 0.448 }) {
   const percent = Math.round(probability * 100);
+  const limiarPercent = Math.round(limiarKS * 100);
   const radius = 64;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (percent / 100) * circumference;
 
   return (
     <div className="risk-gauge-card glass-panel animate-fade-in">
-      <h3 className="card-subtitle">Índice Probabilístico de Aditivo</h3>
-      
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h3 className="card-subtitle" style={{ margin: 0 }}>Índice Probabilístico de Aditivo</h3>
+        <span className="badge" style={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#94a3b8', fontSize: '0.75rem' }}>
+          Corte KS: {limiarPercent}%
+        </span>
+      </div>
+
       <div className="gauge-wrapper">
         <svg className="gauge-svg" width="160" height="160" viewBox="0 0 160 160">
           <circle
@@ -47,11 +53,11 @@ export default function RiskGauge({ probability, riskLevel, label, color }) {
       </div>
 
       <p className="gauge-footnote">
-        {percent >= 65
-          ? '⚠️ Risco Crítico: Alta propensão a termo aditivo de prazo ou valor. Requer governança redobrada.'
-          : percent >= 45
-          ? '⚡ Risco Moderado: Contrato com características medianas de prorrogação.'
-          : '✅ Baixo Risco: Contrato com alta previsibilidade e baixa probabilidade estatística de aditivo.'}
+        {percent >= 70
+          ? '🚨 Risco Crítico: Altíssima propensão a termo aditivo. Requer comitê de governança e fiscalização reforçada.'
+          : percent >= limiarPercent
+          ? `⚡ Risco Moderado: Probabilidade acima do ponto de corte Kolmogorov-Smirnov (${limiarPercent}%). Exige acompanhamento preventivo.`
+          : `✅ Baixo Risco: Probabilidade abaixo do limiar KS (${limiarPercent}%). Contrato com alta previsibilidade de execução regular.`}
       </p>
     </div>
   );

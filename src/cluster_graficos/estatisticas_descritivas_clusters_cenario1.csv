@@ -1,0 +1,13 @@
+﻿Cluster;Nome_Cluster;Contratos_N;Percent_Cluster_Pct;Taxa_Aditivo_Pct;Variavel;Media;Desvio_Padrao;Minimo;P5;Q1_25;Mediana_Q2;Q3_P75;P95;Maximo
+0;Cluster 0 — Contratos Trienais Padrão (Risco Moderado);2739;47.33;54.87;Valor_Original;23146285.9;85251117.5;0.01;49409.42;508093.76;2846845.26;14489870.58;99086301.74;1779375002.66
+0;Cluster 0 — Contratos Trienais Padrão (Risco Moderado);2739;47.33;54.87;duracao_planejada_dias;1101.4;99.79;832.0;899.0;1094.0;1094.0;1124.0;1283.3;1370.0
+0;Cluster 0 — Contratos Trienais Padrão (Risco Moderado);2739;47.33;54.87;Capital_Social_Receita;220747431.62;1348656014.38;0.0;20000.0;500000.0;4650000.0;40000000.0;842999412.29;27893743356.11
+0;Cluster 0 — Contratos Trienais Padrão (Risco Moderado);2739;47.33;54.87;qtd_cont_5a_forn;5.77;55.4;0.0;0.0;0.0;0.0;0.0;5.0;1557.0
+1;Cluster 1 — Fornecimentos e Contratos Curtos (Baixo Risco);1667;28.81;44.15;Valor_Original;15129115.06;39970574.32;0.01;67117.88;497996.62;2069783.28;11077931.69;69964906.68;538377651.45
+1;Cluster 1 — Fornecimentos e Contratos Curtos (Baixo Risco);1667;28.81;44.15;duracao_planejada_dias;562.47;205.55;0.0;179.0;386.5;640.0;729.0;789.0;831.0
+1;Cluster 1 — Fornecimentos e Contratos Curtos (Baixo Risco);1667;28.81;44.15;Capital_Social_Receita;277367475.79;1622387207.85;0.0;1900.0;500000.0;3600000.0;31211487.0;855000000.0;32538937370.0
+1;Cluster 1 — Fornecimentos e Contratos Curtos (Baixo Risco);1667;28.81;44.15;qtd_cont_5a_forn;59.22;426.87;0.0;0.0;0.0;0.0;3.0;81.0;5922.0
+2;Cluster 2 — Projetos de Longa Duração e Megacontratos (Alto Risco);1381;23.86;83.92;Valor_Original;45727016.8;162395261.26;0.01;232344.41;2017992.76;7699999.8;27294089.86;190706021.2;3345927317.66
+2;Cluster 2 — Projetos de Longa Duração e Megacontratos (Alto Risco);1381;23.86;83.92;duracao_planejada_dias;1641.49;177.99;1318.0;1448.0;1459.0;1614.0;1824.0;1824.0;2312.0
+2;Cluster 2 — Projetos de Longa Duração e Megacontratos (Alto Risco);1381;23.86;83.92;Capital_Social_Receita;777837292.59;4367266021.28;0.0;10000.0;800000.0;11995230.0;200089899.0;2180359953.0;65000000000.0
+2;Cluster 2 — Projetos de Longa Duração e Megacontratos (Alto Risco);1381;23.86;83.92;qtd_cont_5a_forn;0.05;0.47;0.0;0.0;0.0;0.0;0.0;0.0;7.0

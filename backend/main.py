@@ -12,13 +12,13 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src", "ml"))
 
-from schemas import ContractInputSchema, PredictionResponseSchema
+from schemas import ContractInputSchema, PredictionResponseSchema, ClusterResponseSchema
 from predictor import predictor
 
 app = FastAPI(
     title="Petrobras ML - Predição de Aditivos Contratuais",
     description="API RESTful de inferência de Machine Learning desenvolvida sob os guardrails metodológicos do Prof. Dr. Ronaldo Martins da Costa (UFG).",
-    version="1.1.0",
+    version="3.0.0",
 )
 
 # Configuração de CORS para comunicação transparente com o frontend React
@@ -36,40 +36,41 @@ def health_check():
     return {
         "status": "online",
         "servico": "Petrobras Contract Addendum ML API",
-        "modelo_campeao": predictor.metrics_report.get("modelo_campeao", "Random Forest"),
-        "versao_api": "v1.1.0",
+        "modelo_campeao": predictor.metrics_report.get("modelo_campeao", "Random Forest (Abordagem 4)"),
+        "versao_api": "v3.0.0",
+        "limiar_ks": predictor.limiar_ks,
+        "max_ks": predictor.max_ks,
     }
 
 
 @app.post("/api/predict", response_model=PredictionResponseSchema)
 def predict_contract(contract: ContractInputSchema):
+    """Pilar 1: Classificação Supervisionada com Random Forest Abordagem 4 e corte KS."""
     try:
         return predictor.predict(contract)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro na inferência: {str(e)}")
 
 
-@app.post("/api/predict-value")
-def predict_contract_value(contract: ContractInputSchema):
-    """Pilar 2 do trabalho.md: Previsão (Regressão) do montante em R$."""
-    try:
-        return predictor.predict_value(contract)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro na regressão: {str(e)}")
-
-
-@app.post("/api/predict-cluster")
+@app.post("/api/predict-cluster", response_model=ClusterResponseSchema)
+@app.post("/api/cluster", response_model=ClusterResponseSchema)
 def predict_contract_cluster(contract: ContractInputSchema):
-    """Pilar 3 do trabalho.md: Agrupamento/Clusterização (Não Supervisionado)."""
+    """Pilar 2: Agrupamento/Clusterização K-Means Cenário 1 com MinMaxScaler (k=3)."""
     try:
         return predictor.get_cluster(contract)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro na clusterização: {str(e)}")
 
 
+@app.get("/api/cluster-report")
+def get_cluster_report():
+    """Retorna os dados estatísticos consolidados dos 3 clusters do Cenário 1."""
+    return predictor.cluster_report
+
+
 @app.get("/api/trabalho-report")
 def get_trabalho_report():
-    """Retorna os dados consolidados dos 3 pilares exigidos no trabalho.md."""
+    """Retorna os dados consolidados dos pilares supervisionado e não supervisionado."""
     return predictor.trabalho_report
 
 

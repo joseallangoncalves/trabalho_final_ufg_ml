@@ -4,10 +4,9 @@ export default function Header({ activeTab, setActiveTab }) {
   const tabs = [
     { id: 'simulator', label: '🎯 Simulador de Risco', icon: '⚡' },
     { id: 'models', label: '📊 Modelos (Classificação)', icon: '📈' },
-    { id: 'confusion', label: '🔲 Matriz de Confusão', icon: '📐' },
-    { id: 'regression', label: '📈 Previsão R$ (Regressão)', icon: '💰' },
-    { id: 'clustering', label: '🧩 Perfis (Clusterização)', icon: '👥' },
-    { id: 'importance', label: '🔍 Fatores de Risco', icon: '🧠' },
+    { id: 'confusion', label: '🔲 Matriz de Confusão & KS', icon: '📐' },
+    { id: 'clustering', label: '🧩 Perfis (K-Means)', icon: '👥' },
+    { id: 'importance', label: '🔍 Fatores de Risco (8 Preditores)', icon: '🧠' },
     { id: 'governance', label: '🛡️ LGPD & Guardrails', icon: '🔒' },
   ];
 

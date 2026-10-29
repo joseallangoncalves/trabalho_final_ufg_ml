@@ -779,6 +779,124 @@
   margin-top: 12px;
 }
 
+/* Regra Geral de Imagens Responsivas */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Galeria e Cards de Gráficos Oficiais */
+.charts-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.chart-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-width: 0; /* Impede expansão descontrolada no CSS Grid */
+}
+
+.chart-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.15);
+}
+
+.chart-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chart-card-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-bright);
+}
+
+.chart-img-container {
+  width: 100%;
+  max-width: 100%;
+  height: 280px; /* Altura controlada para caber confortavelmente na página */
+  background: #ffffff; /* Fundo limpo harmonizado com a paleta do Matplotlib */
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  padding: 6px;
+}
+
+.chart-card.single-chart .chart-img-container {
+  height: 360px;
+}
+
+.chart-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  margin: 0 auto;
+  border-radius: 4px;
+  transition: transform 0.25s ease;
+}
+
+.chart-img:hover {
+  transform: scale(1.015);
+}
+
+.chart-zoom-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f8fafc;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  opacity: 0.85;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.2s ease, color 0.2s ease, background 0.2s ease;
+  z-index: 10;
+}
+
+.chart-img-container:hover .chart-zoom-btn {
+  opacity: 1;
+  background: #0284c7;
+  color: #ffffff;
+}
+
+.chart-card-caption {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
 /* Responsividade */
 @media (max-width: 1024px) {
   .simulator-layout {

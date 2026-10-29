@@ -3,7 +3,6 @@ import Header from './components/Header';
 import ContractSimulator from './components/ContractSimulator';
 import ModelsComparison from './components/ModelsComparison';
 import ConfusionMatrixCard from './components/ConfusionMatrixCard';
-import RegressionView from './components/RegressionView';
 import ClusteringView from './components/ClusteringView';
 import FeatureImportanceView from './components/FeatureImportanceView';
 import GovernanceLGPDView from './components/GovernanceLGPDView';
@@ -20,7 +19,6 @@ export default function App() {
         {activeTab === 'simulator' && <ContractSimulator />}
         {activeTab === 'models' && <ModelsComparison />}
         {activeTab === 'confusion' && <ConfusionMatrixCard />}
-        {activeTab === 'regression' && <RegressionView />}
         {activeTab === 'clustering' && <ClusteringView />}
         {activeTab === 'importance' && <FeatureImportanceView />}
         {activeTab === 'governance' && <GovernanceLGPDView />}

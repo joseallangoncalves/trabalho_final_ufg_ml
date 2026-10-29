@@ -51,9 +51,9 @@ export default function GovernanceLGPDView() {
               Aderência rigorosa à metodologia ensinada pelo Prof. Dr. Ronaldo Martins da Costa:
             </p>
             <ul className="gov-list">
-              <li>✔️ <strong>StandardScaler:</strong> Padronização mandatória para algoritmos baseados em distância.</li>
-              <li>✔️ <strong>Stratified 5-Fold CV:</strong> Validação cruzada com preservação das proporções originais da classe.</li>
-              <li>✔️ <strong>Matriz de Confusão Completa:</strong> Foco em Sensibilidade (Recall) para mitigar Falsos Negativos.</li>
+              <li>✔️ <strong>Normalização Crítica:</strong> MinMaxScaler para K-Means e preservação de escalas no Random Forest.</li>
+              <li>✔️ <strong>Split Estratificado 60/20/20:</strong> Treino (3.471), Validação (1.158) e Teste Independente Cego (1.158).</li>
+              <li>✔️ <strong>Calibração Kolmogorov-Smirnov (Max KS):</strong> Corte ótimo em 0,4540 priorizando Sensibilidade (Recall 76,12%).</li>
             </ul>
           </div>
         </div>

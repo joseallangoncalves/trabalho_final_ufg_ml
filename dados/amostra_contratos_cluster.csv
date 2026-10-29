@@ -1,0 +1,11 @@
+Numero_Contrato;Valor_Original;duracao_planejada_dias;Capital_Social_Receita;qtd_cont_5a_forn;Porte_Empresa;Descricao_Servico
+CTR-TEST-001;450000.0;360.0;1200000.0;1.0;ME;Fornecimento emergencial de válvulas e conexões
+CTR-TEST-002;1850000.0;600.0;5000000.0;2.0;EPP;Serviços de calibração e instrumentação de campo
+CTR-TEST-003;2800000.0;1095.0;4500000.0;0.0;DEMAIS;Manutenção eletromecânica preventiva em refinaria
+CTR-TEST-004;3200000.0;1095.0;6000000.0;3.0;DEMAIS;Apoio técnico de engenharia e inspeção de dutos
+CTR-TEST-005;8500000.0;1460.0;15000000.0;0.0;DEMAIS;Construção e montagem industrial em terminal aquaviário
+CTR-TEST-006;42000000.0;1825.0;85000000.0;5.0;DEMAIS;Engenharia, suprimento e construção (EPC) de unidade de processo
+CTR-TEST-007;120000.0;180.0;500000.0;0.0;ME;Inspeção termográfica e ensaios não destrutivos
+CTR-TEST-008;14500000.0;1650.0;25000000.0;1.0;DEMAIS;Serviços submarinos com ROV e embarcação de apoio
+CTR-TEST-009;2100000.0;730.0;3800000.0;0.0;EPP;Serviços de transporte terrestre e logística interna
+CTR-TEST-010;95000000.0;2190.0;150000000.0;12.0;DEMAIS;Afretamento de plataforma de perfuração semissubmersível
