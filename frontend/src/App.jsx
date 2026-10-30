@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import ContractSimulator from './components/ContractSimulator';
+import DatasetEDAView from './components/DatasetEDAView';
 import ModelsComparison from './components/ModelsComparison';
 import ConfusionMatrixCard from './components/ConfusionMatrixCard';
 import ClusteringView from './components/ClusteringView';
 import FeatureImportanceView from './components/FeatureImportanceView';
-import GovernanceLGPDView from './components/GovernanceLGPDView';
 import './App.css';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('simulator');
+  const [activeTab, setActiveTab] = useState('dataset');
 
   return (
     <div className="app-container">
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <main className="main-content">
+        {activeTab === 'dataset' && <DatasetEDAView />}
         {activeTab === 'simulator' && <ContractSimulator />}
         {activeTab === 'models' && <ModelsComparison />}
         {activeTab === 'confusion' && <ConfusionMatrixCard />}
         {activeTab === 'clustering' && <ClusteringView />}
         {activeTab === 'importance' && <FeatureImportanceView />}
-        {activeTab === 'governance' && <GovernanceLGPDView />}
       </main>
 
       <footer className="footer-container glass-panel">
