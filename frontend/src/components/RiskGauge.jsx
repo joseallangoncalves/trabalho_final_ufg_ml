@@ -10,9 +10,9 @@ export default function RiskGauge({ probability, riskLevel, label, color, limiar
   return (
     <div className="risk-gauge-card glass-panel animate-fade-in">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h3 className="card-subtitle" style={{ margin: 0 }}>Índice Probabilístico de Aditivo</h3>
+        <h3 className="card-subtitle" style={{ margin: 0 }}>Probabilidade estimada de aditivo</h3>
         <span className="badge" style={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#94a3b8', fontSize: '0.75rem' }}>
-          Corte KS: {limiarPercent}%
+          Corte KS: {typeof limiarKS === 'number' ? limiarKS.toFixed(3).replace('.', ',') : '0,454'}
         </span>
       </div>
 
