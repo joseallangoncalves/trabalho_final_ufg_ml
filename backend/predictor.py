@@ -310,12 +310,13 @@ class ContractPredictor:
 
         # Fatores explicativos
         fatores: List[ContributingFactor] = []
-        if contract.duracao_planejada_dias > 1095:
+        if contract.duracao_planejada_dias >= 365:
+            dias_formatado = f"{contract.duracao_planejada_dias:,}".replace(",", ".")
             fatores.append(
                 ContributingFactor(
-                    feature="Horizonte Temporal Extenso",
+                    feature="Duração Contratual Longa",
                     impacto_direcao="Aumenta Risco",
-                    descricao=f"Vigência de {contract.duracao_planejada_dias} dias excede o triênio padrão, elevando a probabilidade de prorrogações temporais.",
+                    descricao=f"O prazo de {dias_formatado} dias contribuiu para uma maior probabilidade estimada de aditivo neste contrato.",
                 )
             )
         if contract.Valor_Original > 10000000.0:
