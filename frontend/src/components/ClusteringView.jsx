@@ -808,7 +808,7 @@ export default function ClusteringView() {
               <div>
                 <h2 className="section-title">🎯 Indicador de Perfis de Novos Contratos — Escoragem K-Means</h2>
                 <p className="section-desc">
-                  Classificação antecipada em <strong>T₀ (momento da celebração contratual)</strong>.
+                  Identificação de grupos de contratos ativos.
                 </p>
               </div>
               <span className="badge badge-champion">Cenário 1 • MinMaxScaler (K=3)</span>
