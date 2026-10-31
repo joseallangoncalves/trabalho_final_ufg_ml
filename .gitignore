@@ -24,3 +24,8 @@ Thumbs.db
 .idea/
 *.swp
 *.log
+
+# Documentos e materias de aula
+documentos/
+*.pdf
+*.xlsx
