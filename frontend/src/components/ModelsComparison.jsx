@@ -172,7 +172,7 @@ export default function ModelsComparison() {
                 Abordagem 4 — Configuração final parcimoniosa ⭐
               </span>
               <p className="kpi-meaning" style={{ marginTop: '8px', lineHeight: '1.45', fontSize: '0.84rem' }}>
-                <strong>Configuração:</strong> removeu taxas e quantidades específicas de aditivos por prazo, valor e prazo/valor. Manteve as variáveis estruturais, qtd_cont_5a_forn, tx_adit_geral_5a, fl_sem_historico_5a, porte da empresa e tipo do último aditivo disponível antes de T0.
+                <strong>Configuração:</strong> removeu taxas e quantidades específicas de aditivos por prazo, valor e prazo/valor. Manteve as variáveis estruturais, qtd_cont_5a_forn, tx_adit_geral_5a, fl_sem_historico_5a, porte da empresa e tipo do último aditivo do fornecedor disponível antes do início da vigência.
               </p>
               <p className="kpi-meaning" style={{ marginTop: '8px', lineHeight: '1.45', fontSize: '0.84rem', color: '#e0f2fe' }}>
                 <strong>Resultado:</strong> selecionada por reduzir a redundância entre preditores sem perda relevante de desempenho, favorecendo um modelo mais simples, estável e aplicável a novos contratos.
