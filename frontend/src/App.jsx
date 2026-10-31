@@ -31,14 +31,6 @@ export default function App() {
           </p>
           <p className="footer-sub">
             Instituto de Informática (INF) — Universidade Federal de Goiás (UFG) • Prof. Dr. Ronaldo Martins da Costa
-          </p>
-          <div className="footer-tags">
-            <span>Lei das Estatais (Lei 13.303/16)</span>
-            <span>•</span>
-            <span>Conformidade LGPD (Lei 13.709/18)</span>
-            <span>•</span>
-            <span>Zero Data Leakage (Tempo T₀)</span>
-          </div>
         </div>
       </footer>
     </div>
