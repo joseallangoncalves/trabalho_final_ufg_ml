@@ -524,7 +524,7 @@ export default function DatasetEDAView() {
               Os contratos aditivados possuem valor original mediano de R$ 6,38 milhões, aproximadamente 4,8 vezes superior ao dos contratos sem aditivo (R$ 1,34 milhão). Também apresentam duração planejada ligeiramente maior na mediana — 1.124 contra 1.094 dias —, mas a diferença se torna mais evidente nos contratos mais longos: o terceiro quartil passa de 1.096 para 1.459 dias.
             </p>
             <p style={{ lineHeight: '1.65', fontSize: '0.88rem', color: 'var(--text-main)', margin: 0 }}>
-              O capital social mediano das contratadas com aditivo é de R$ 7,0 milhões, mais que o dobro do grupo sem aditivo (R$ 3,0 milhões), sugerindo associação entre contratos de maior porte e maior ocorrência de aditamentos.
+              O capital social mediano das contratadas com aditivo é de R$ 7,0 milhões, mais que o dobro do grupo sem aditivo (R$ 3,0 milhões), sugerindo possível associação entre contratos de maior porte e maior ocorrência de aditamentos.
             </p>
           </div>
 
