@@ -89,11 +89,8 @@ export default function FeatureImportanceView() {
         <div className="callout-box" style={{ marginTop: '24px' }}>
           <div className="callout-icon">📌</div>
           <div>
-            <p className="callout-text" style={{ fontSize: '0.88rem', lineHeight: '1.6', color: 'var(--text-bright)', marginBottom: '8px' }}>
+            <p className="callout-text" style={{ fontSize: '0.88rem', lineHeight: '1.6', color: 'var(--text-bright)', margin: 0 }}>
               A análise indica predominância das variáveis estruturais do contrato, especialmente <code>duracao_planejada_dias</code> e <code>Valor_Original</code>, na discriminação do risco de aditivo. O histórico consolidado do fornecedor, o porte empresarial e o tipo do último aditivo disponível antes da vigência para o fornecedor apresentam contribuição adicional, porém menor.
-            </p>
-            <p className="callout-text" style={{ fontSize: '0.86rem', lineHeight: '1.6', color: 'var(--text-dim)', margin: 0, fontStyle: 'italic' }}>
-              As importâncias expressam contribuição preditiva para o modelo, não relação causal. Portanto, não se deve interpretar que a alteração isolada de uma variável necessariamente provocará aumento ou redução da probabilidade de aditivo.
             </p>
           </div>
         </div>
