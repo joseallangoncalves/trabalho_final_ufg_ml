@@ -149,7 +149,7 @@ export default function ConfusionMatrixCard() {
             <span className="badge badge-champion">classificacao_graficos/</span>
           </div>
           <p className="section-desc" style={{ marginTop: '6px' }}>
-            Gráficos gerados pelo script <code>training_random_forest_ab4.py</code> para seleção do ponto de corte Max KS e avaliação no conjunto de teste independente.
+            Gráficos para seleção do ponto de corte Max KS e avaliação no conjunto de teste independente.
           </p>
 
           <div className="charts-gallery-grid">
