@@ -184,7 +184,7 @@ export default function ConfusionMatrixCard() {
             {/* Gráfico 2: Matriz de Confusão Heatmap */}
             <div className="chart-card">
               <div className="chart-card-header">
-                <span className="chart-card-title">2. Matriz de Confusão Oficial (Teste Independente N=1.158)</span>
+                <span className="chart-card-title">2. Matriz de Confusão (Teste Independente/holdout N=1.158)</span>
                 <span className="badge" style={{ backgroundColor: '#1e293b' }}>Acurácia: 71,50%</span>
               </div>
               <div className="chart-img-container">
