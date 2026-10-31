@@ -27,7 +27,7 @@ class ContractPredictor:
         self.models_dir = models_dir or os.path.join(self.base_dir, "models")
         self.rf_payload = None
         self.rf_pipeline = None
-        self.limiar_ks = 0.4480
+        self.limiar_ks = 0.4540
         self.max_ks = 0.4019
         self.clustering_payload = None
         self.cluster_scaler = None
@@ -56,7 +56,7 @@ class ContractPredictor:
                 try:
                     self.rf_payload = joblib.load(path)
                     self.rf_pipeline = self.rf_payload.get("pipeline")
-                    self.limiar_ks = float(self.rf_payload.get("limiar_ks", 0.4480))
+                    self.limiar_ks = float(self.rf_payload.get("limiar_ks", 0.4540))
                     self.max_ks = float(self.rf_payload.get("max_ks", 0.4019))
                     print(f"[OK] Random Forest Abordagem 4 carregado de: {path} (Limiar KS: {self.limiar_ks:.4f})")
                     break

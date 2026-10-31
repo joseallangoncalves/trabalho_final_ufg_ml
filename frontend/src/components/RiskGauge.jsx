@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function RiskGauge({ probability, riskLevel, label, color, limiarKS = 0.448 }) {
+export default function RiskGauge({ probability, riskLevel, label, color, limiarKS = 0.454 }) {
   const percent = Math.round(probability * 100);
   const limiarPercent = Math.round(limiarKS * 100);
   const radius = 64;

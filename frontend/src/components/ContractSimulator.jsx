@@ -116,7 +116,7 @@ export default function ContractSimulator() {
       console.warn('API local indisponível, utilizando cálculo offline calibrado:', err);
       setApiError('API Backend offline. Exibindo estimativa offline baseada no Random Forest Abordagem 4.');
 
-      // Fallback heurístico calibrado na Abordagem 4 (limiar KS = 0.4480)
+      // Fallback heurístico calibrado na Abordagem 4 (limiar KS = 0.4540)
       let score = 0.35;
       if (dataToPredict.Valor_Original > 10000000) score += 0.22;
       else if (dataToPredict.Valor_Original > 3000000) score += 0.12;
@@ -129,7 +129,7 @@ export default function ContractSimulator() {
       if (dataToPredict.fl_sem_historico_5a === 1) score += 0.04;
 
       score = Math.min(Math.max(score, 0.05), 0.95);
-      const limiar = 0.448;
+      const limiar = 0.454;
       const isAditivo = score >= limiar ? 1 : 0;
 
       setPrediction({
@@ -142,7 +142,7 @@ export default function ContractSimulator() {
         nivel_risco: score >= 0.70 ? 'CRÍTICO' : score >= limiar ? 'MODERADO' : 'BAIXO',
         cor_alerta: score >= 0.70 ? '#ef4444' : score >= limiar ? '#f59e0b' : '#10b981',
         parecer_governanca: isAditivo
-          ? 'Probabilidade acima do limiar KS (44,8%). Recomenda-se acompanhamento semestral e plano contingencial.'
+          ? 'Probabilidade acima do limiar KS (0,454). Recomenda-se acompanhamento semestral e plano contingencial.'
           : 'Contrato de perfil equilibrado. Diretrizes convencionais de fiscalização são suficientes.',
         fatores_relevantes: [
           {
