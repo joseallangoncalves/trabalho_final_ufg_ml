@@ -1081,7 +1081,7 @@ export default function ClusteringView() {
                     📋 Amostra de Validação de Novos Contratos (amostra_contratos_cluster.csv)
                   </h3>
                   <p className="card-text-muted" style={{ marginTop: '4px' }}>
-                    10 novos contratos escorados pelo pipeline K-Means Cenário 1. Clique em <strong>"Carregar no Escorador"</strong> para carregar qualquer contrato instantaneamente no simulador acima.
+                    10 novos contratos escorados pelo pipeline K-Means Cenário 1.
                   </p>
                 </div>
                 <div className="cv-legend-badge">
