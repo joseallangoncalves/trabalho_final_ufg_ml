@@ -138,7 +138,7 @@ export default function ConfusionMatrixCard() {
             </table>
           </div>
           <p style={{ marginTop: '10px', fontSize: '0.84rem', color: 'var(--text-dim)', fontStyle: 'italic' }}>
-            A proximidade da ROC-AUC entre validação (0,7587) e teste independente (0,7652) indica estabilidade da capacidade discriminativa do modelo em dados não utilizados no ajuste.
+            A redução entre treinamento e validação é esperada na avaliação fora da amostra. A proximidade das métricas evidencia estabilidade da capacidade discriminativa do modelo em novos dados.
           </p>
         </div>
 
