@@ -56,8 +56,8 @@ export default function RiskGauge({ probability, riskLevel, label, color, limiar
         {percent >= 70
           ? '🚨 Risco Crítico: Altíssima propensão a termo aditivo. Requer comitê de governança e fiscalização reforçada.'
           : percent >= limiarPercent
-          ? `⚡ Risco Moderado: Probabilidade acima do ponto de corte Kolmogorov-Smirnov (${limiarPercent}%). Exige acompanhamento preventivo.`
-          : `✅ Baixo Risco: Probabilidade abaixo do limiar KS (${limiarPercent}%). Contrato com alta previsibilidade de execução regular.`}
+          ? `A probabilidade estimada de aditivo é de ${(probability || 0.47).toFixed(2).replace('.', ',')} acima do limiar operacional de 0,454 definido pelo Máximo KS. O contrato foi sinalizado para acompanhamento preventivo.`
+          : `✅ Baixo Risco: Probabilidade abaixo do limiar operacional (${typeof limiarKS === 'number' ? limiarKS.toFixed(3).replace('.', ',') : '0,454'}). Contrato com alta previsibilidade de execução regular.`}
       </p>
     </div>
   );
