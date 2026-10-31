@@ -138,7 +138,7 @@ export default function ConfusionMatrixCard() {
             </table>
           </div>
           <p style={{ marginTop: '10px', fontSize: '0.84rem', color: 'var(--text-dim)', fontStyle: 'italic' }}>
-            A redução entre treinamento e validação é esperada na avaliação fora da amostra. A proximidade das métricas evidencia estabilidade da capacidade discriminativa do modelo em novos dados.
+            A redução entre treinamento e validação é esperada na avaliação fora da amostra. A proximidade das métricas indica estabilidade da capacidade discriminativa do modelo em novos dados.
           </p>
         </div>
 
