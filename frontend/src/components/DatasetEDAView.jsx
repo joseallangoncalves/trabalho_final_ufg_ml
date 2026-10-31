@@ -465,7 +465,7 @@ export default function DatasetEDAView() {
             <div>
               <h3 className="card-inner-title">Análise Bidimensional: Contraste Direto "Sem Aditivo (0)" vs "Com Aditivo (1)"</h3>
               <p className="card-text-muted">
-                Resultados formais do <strong>Teste Não-Paramétrico de Mann-Whitney U</strong> e comparação de quartis (Seção 6.2 do relatório):
+                Resultados formais do <strong>Teste Não-Paramétrico de Mann-Whitney U</strong> e comparação de quartis:
               </p>
             </div>
             <div className="cv-legend-badge">
