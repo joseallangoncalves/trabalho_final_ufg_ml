@@ -410,26 +410,7 @@ export default function ContractSimulator() {
               limiarKS={prediction.limiar_decisao_ks}
             />
 
-            {/* Enquadramento de Cluster Não Supervisionado */}
-            {clusterInfo && (
-              <div className="factors-card glass-panel animate-fade-in" style={{ borderLeft: `4px solid ${clusterInfo.cluster_id === 2 ? '#ef4444' : clusterInfo.cluster_id === 0 ? '#3b82f6' : '#10b981'}` }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <h3 className="card-subtitle" style={{ margin: 0 }}>🧩 Perfil Não Supervisionado (K-Means)</h3>
-                  <span className="badge" style={{ backgroundColor: '#1e293b' }}>
-                    Cluster {clusterInfo.cluster_id}
-                  </span>
-                </div>
-                <div style={{ fontWeight: 600, color: 'var(--text-bright)', marginBottom: '4px' }}>
-                  {clusterInfo.cluster_nome}
-                </div>
-                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '8px' }}>
-                  Taxa Histórica Empírica de Aditivos do Cluster: <strong>{Math.round(clusterInfo.cluster_taxa_historica * 1000) / 10}%</strong> • Duração Média: <strong>{Math.round(clusterInfo.duracao_media)} dias</strong>
-                </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-dim)', margin: 0 }}>
-                  {clusterInfo.recomendacao_gestao}
-                </p>
-              </div>
-            )}
+
 
             {/* Parecer de Governança */}
             <div className="factors-card glass-panel animate-fade-in">
