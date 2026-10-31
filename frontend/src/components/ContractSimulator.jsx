@@ -205,11 +205,11 @@ export default function ContractSimulator() {
       <section className="form-section glass-panel">
         <div className="form-header">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h2 className="section-title">⚙️ Simulador Operacional — 8 Preditores em T₀</h2>
+            <h2 className="section-title">⚙️ Simulador Operacional</h2>
             <span className="badge badge-champion">Abordagem 4 (RF) + K-Means (MinMax)</span>
           </div>
           <p className="section-desc">
-            Insira os dados do contrato conhecidos no momento de assinatura ($T_0$). Todas as variáveis pós-fato foram vedadas para blindar contra <em>data leakage</em> e manter estrita conformidade com a LGPD e Lei 13.303/16.
+            Insira dados de contratos no momento de assinatura ou que ainda não finalizaram a vigência, contratos ativos.
           </p>
 
           <div className="preset-buttons">
