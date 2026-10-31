@@ -8,12 +8,12 @@ export default function DatasetEDAView() {
 
   // 1. Dicionário Completo das 17 Variáveis da Tabela Analítica (Seção 3 do Relatório)
   const fullDictionary = [
-    { name: 'Numero_Contrato', label: 'Número do Contrato', type: 'Categórico Nominal', category: 'identificador', role: 'Identificador Chave', scale: 'Texto / Numérico', desc: 'Chave primária única do contrato no ERP Corporativo SAP Petrobras (Série 46).' },
+    { name: 'Numero_Contrato', label: 'Número do Contrato (ID)', type: 'Identificador', category: 'identificador', role: 'Identificador Chave', scale: 'Chave Única', desc: 'Identificador único do contrato.' },
     { name: 'fl_aditivo', label: 'Ocorrência de Aditivo (Target)', type: 'Binário (0/1)', category: 'target', role: 'Variável Alvo (Target)', scale: '0 = Não (41,28%), 1 = Sim (58,72%)', desc: '1 se o contrato sofreu qualquer termo aditivo de prazo e/ou valor; 0 se encerrou sem termos aditivos.' },
     { name: 'Valor_Original', label: 'Valor Original Contratado', type: 'Numérico Contínuo', category: 'contratual', role: 'Preditivo (Cluster/Classif)', scale: 'Reais (R$)', desc: 'Valor total monetário inicial pactuado na assinatura original. Apresenta forte assimetria (+14,77) e cauda longa.' },
     { name: 'duracao_planejada_dias', label: 'Duração Planejada Original', type: 'Numérico Discreto', category: 'contratual', role: 'Preditivo (Cluster/Classif)', scale: 'Dias Corridos', desc: 'Prazo previsto entre o início e o fim estipulado no edital original. Distribuição simétrica centrada em 1.094 dias (3 anos).' },
     { name: 'Capital_Social_Receita', label: 'Capital Social Registrado', type: 'Numérico Contínuo', category: 'cadastral', role: 'Preditivo (Cluster/Classif)', scale: 'Reais (R$)', desc: 'Porte patrimonial registrado da empresa perante a Receita Federal do Brasil (RFB). Reflete solidez econômico-financeira.' },
-    { name: 'Porte_Empresa', label: 'Porte Empresarial (Receita Federal)', type: 'Categórico Nominal', category: 'cadastral', role: 'Preditivo (Classificação)', scale: 'Demais (77,1%), EPP (11,9%), ME (9,1%), Exterior (2,0%)', desc: 'Porte oficial da contratada perante a RFB (Demais = Médio e Grande Porte).' },
+    { name: 'Porte_Empresa', label: 'Porte Empresarial (Receita Federal)', type: 'Categórica Ordinal', category: 'cadastral', role: 'Preditivo (Classificação)', scale: 'Demais (77,1%), EPP (11,9%), ME (9,1%), Exterior (2,0%)', desc: 'Porte oficial da contratada perante a RFB (Demais = Médio e Grande Porte).' },
     { name: 'qtd_cont_5a_forn', label: 'Contratos nos 5 Anos Anteriores', type: 'Numérico Discreto', category: 'historico', role: 'Preditivo (Cluster/Classif)', scale: 'Contagem Inteira', desc: 'Total de contratos do fornecedor finalizados nos 5 anos imediatamente anteriores à assinatura do contrato analisado.' },
     { name: 'fl_sem_historico_5a', label: 'Flag Sem Histórico nos 5 Anos', type: 'Binário (0/1)', category: 'historico', role: 'Preditivo (Classificação)', scale: '1 = Sem Histórico (75%), 0 = Com Histórico', desc: 'Indicador lógico de ausência de contratos elegíveis nos 5 anos anteriores. Resolve matematicamente a divisão 0/0 nas taxas.' },
     { name: 'qtd_adit_prazo_5a', label: 'Aditivos de Prazo nos 5 Anos', type: 'Numérico Discreto', category: 'historico', role: 'Preditivo (Classificação)', scale: 'Contagem Inteira', desc: 'Contratos anteriores do fornecedor com aditivo exclusivo de prazo celebrados na janela de 5 anos.' },
@@ -61,11 +61,26 @@ export default function DatasetEDAView() {
 
   // 6. Síntese dos Insights para a Modelagem (Seção 8 do Relatório)
   const modelingInsights = [
-    { finding: 'Assimetria severa (> +14) em grandezas monetárias e capital', decision: 'Adoção obrigatória do MinMaxScaler no K-Means e árvores de decisão (Random Forest) na classificação', impact: 'Evitou dominância do valor em reais no cálculo de distâncias euclidianas e garantiu invariância a outliers' },
-    { finding: 'Ausência de correlação linear perfeita entre preditores', decision: 'Preservação de Valor_Original, duracao_planejada_dias, Capital_Social_Receita e qtd_cont_5a_forn no Cenário 1', impact: 'Gerou partições equilibradas e parcimoniosas no clustering (Silhueta = 0,6082)' },
-    { finding: 'Salto abrupto de medianas em contratos aditivados (5x no valor e +33% no prazo)', decision: 'Seleção das variáveis de vigência e valor como separadores primários (split raiz)', impact: 'Proporcionou máxima separação estatística, atingindo KS = 0,5034 e ROC-AUC = 0,8172' },
-    { finding: 'Inflação de zeros nas métricas históricas de aditivo dos fornecedores', decision: 'Criação da flag binária fl_sem_historico_5a e imputação lógica em zero para novos fornecedores', impact: 'Incorporou o histórico de reincidência sem excluir empresas novas entrantes no cadastro' },
-    { finding: 'Equilíbrio natural da classe dependente (58,7% com aditivo vs 41,3% sem)', decision: 'Descarte de técnicas artificiais de sobreamostragem (SMOTE) e calibração do threshold ótimo pelo KS', impact: 'Eliminou ruídos sintéticos e otimizou a captura de contratos críticos na gestão preventiva' }
+    {
+      finding: 'Assimetria positiva acentuada e presença de valores extremos nas grandezas monetárias e de capital, além de diferenças expressivas de escala em relação às variáveis discretas de contagem',
+      decision: 'Foram avaliadas transformações e métodos de escalonamento, incluindo alternativas robustas. O MinMaxScaler apresentou o melhor resultado para a segmentação e foi aplicado exclusivamente no K-Means, evitando que variáveis monetárias dominassem o cálculo das distâncias euclidianas.'
+    },
+    {
+      finding: 'Salto das medianas em contratos aditivados: aproximadamente cinco vezes maior no valor e 33% maior na duração planejada',
+      decision: 'Priorização das variáveis de valor e vigência na classificação, por seu maior potencial de separar contratos com e sem aditivo.'
+    },
+    {
+      finding: 'Concentração de zeros e ausência de registros históricos de aditivos para parte dos fornecedores',
+      decision: 'Criação da flag fl_sem_historico_5a como indicador de ausência de histórico (missing indicator), com imputação de zero nas variáveis de contagem histórica.'
+    },
+    {
+      finding: 'Distribuição naturalmente próxima do equilíbrio: 58,7% com aditivo e 41,3% sem aditivo',
+      decision: 'Não utilização de técnicas artificiais de sobreamostragem, como SMOTE, preservando a distribuição original dos contratos.'
+    },
+    {
+      finding: 'Correlação de Spearman forte e consistente entre as quantidades históricas de aditivos por prazo, valor e prazo/valor, observada nos dois grupos',
+      decision: 'Uso preferencial de qtd_adit_geral_5a, variável consolidada, em vez da inclusão simultânea das quantidades desagregadas por tipo de aditivo.'
+    }
   ];
 
   // 7. Gráficos de Alta Resolução da Pasta eda_graficos/
@@ -187,7 +202,7 @@ export default function DatasetEDAView() {
                 <strong>Eliminação de Censura Temporal à Direita:</strong> Seleção exclusiva de contratos em situação finalizada (<em>Concluído</em>, <em>Concluído - rescisão</em> ou <em>Concluído - distrato</em>). Contratos em aberto foram excluídos para garantir ciclo completo de aditivos observado sem viés.
               </li>
               <li>
-                <strong>Janela Retroativa de 5 Anos:</strong> O histórico de desempenho de cada fornecedor foi calculado dinamicamente nos 5 anos imediatamente anteriores à assinatura de cada contrato.
+                <strong>Histórico de Aditivos dos Fornecedores:</strong> O histórico de aditivos de cada fornecedor foi calculado dinamicamente nos 5 anos imediatamente anteriores à assinatura de cada contrato.
               </li>
             </ul>
           </div>
@@ -228,9 +243,9 @@ export default function DatasetEDAView() {
         <div className="section-card glass-panel">
           <div className="section-header-row">
             <div>
-              <h3 className="card-inner-title">Dicionário Completo de Variáveis da Base Analítica (ABT)</h3>
+              <h3 className="card-inner-title">Detalhamento das 17 variáveis utilizadas nos testes</h3>
               <p className="card-text-muted">
-                Detalhamento dos 17 atributos estruturados na esteira de dados conforme a Seção 3 do relatório técnico.
+                Dicionário completo e enquadramento estatístico dos 17 atributos estruturados na esteira de dados.
               </p>
             </div>
 
@@ -577,17 +592,15 @@ export default function DatasetEDAView() {
             <table className="eda-table" style={{ textAlign: 'left' }}>
               <thead>
                 <tr>
-                  <th style={{ width: '28%' }}>Achado Estatístico da EDA</th>
-                  <th style={{ width: '36%' }}>Decisão Metodológica no Pipeline</th>
-                  <th style={{ width: '36%' }}>Impacto no Desempenho dos Modelos</th>
+                  <th style={{ width: '45%' }}>Achado Estatístico da EDA</th>
+                  <th style={{ width: '55%' }}>Decisão Metodológica no Pipeline</th>
                 </tr>
               </thead>
               <tbody>
                 {modelingInsights.map((row, idx) => (
                   <tr key={idx}>
-                    <td className="font-semibold text-yellow" style={{ fontSize: '0.82rem' }}>{row.finding}</td>
-                    <td className="text-cyan" style={{ fontSize: '0.82rem' }}>{row.decision}</td>
-                    <td style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>{row.impact}</td>
+                    <td className="font-semibold text-yellow" style={{ fontSize: '0.85rem' }}>{row.finding}</td>
+                    <td className="text-cyan" style={{ fontSize: '0.85rem', lineHeight: '1.45' }}>{row.decision}</td>
                   </tr>
                 ))}
               </tbody>

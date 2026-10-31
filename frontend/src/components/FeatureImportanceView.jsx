@@ -67,7 +67,7 @@ export default function FeatureImportanceView() {
           <div>
             <h2 className="section-title">🔍 Importância dos Preditores (Feature Importance — Abordagem 4)</h2>
             <p className="section-desc">
-              Importâncias apuradas via <strong>Gini Impurity & Permutation Feature Importance</strong> sobre o conjunto de teste cego, conforme <strong>Aula 3 (Árvores e Ensembles) do Prof. Dr. Ronaldo Martins da Costa</strong>.
+              Importâncias apuradas via <strong>Gini Impurity & Permutation Feature Importance</strong> sobre o conjunto de teste independente, conforme <strong>Aula 3 (Árvores e Ensembles) do Prof. Dr. Ronaldo Martins da Costa</strong>.
             </p>
           </div>
           <span className="badge badge-champion">8 Preditores Homologados em T₀</span>

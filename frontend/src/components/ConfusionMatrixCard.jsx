@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function ConfusionMatrixCard() {
   const matrix = {
-    VP: 517,
-    VN: 312,
-    FP: 167,
-    FN: 162,
+    VP: 510,
+    VN: 318,
+    FP: 160,
+    FN: 170,
     total: 1158,
     limiarKS: 0.4540,
     maxKS: 0.4019,
@@ -14,7 +14,7 @@ export default function ConfusionMatrixCard() {
   const particoes = [
     { nome: 'Treinamento (60%)', n: 3471, acc: '75,54%', auc: '0,8371', f1: '0,7918', rec: '79,16%', prec: '79,20%', esp: '70,34%' },
     { nome: 'Validação (20%)', n: 1158, acc: '70,90%', auc: '0,7587', f1: '0,7509', rec: '75,48%', prec: '74,71%', esp: '65,48%' },
-    { nome: 'Teste Cego (20%)', n: 1158, acc: '71,50%', auc: '0,7652', f1: '0,7556', rec: '76,12%', prec: '75,00%', esp: '66,53%' },
+    { nome: 'Teste Independente (20%)', n: 1158, acc: '71,50%', auc: '0,7652', f1: '0,7556', rec: '75,00%', prec: '76,12%', esp: '66,53%' },
   ];
 
   return (
@@ -22,9 +22,9 @@ export default function ConfusionMatrixCard() {
       <div className="glass-panel section-card">
         <div className="section-header-row">
           <div>
-            <h2 className="section-title">🔲 Matriz de Confusão & Calibração Kolmogorov-Smirnov (Max KS)</h2>
+            <h2 className="section-title">🔲 Matriz de Confusão e Seleção do Limiar por Máximo KS</h2>
             <p className="section-desc">
-              Resultados sobre os <strong>1.158 contratos de teste cego</strong> (20% da base Petrobras nunca vistos no treino), operando sob o limiar calibrado por Max KS (<strong>0,4540</strong>).
+              Resultados sobre os 1.158 contratos do conjunto de teste independente (20% da base). O limiar 0,4540 foi definido no conjunto de validação pelo critério de Máximo KS e aplicado sem ajuste ao teste.
             </p>
           </div>
           <span className="badge badge-champion">Max KS = 0,4019 • Limiar = 0,4540</span>
@@ -46,14 +46,14 @@ export default function ConfusionMatrixCard() {
             <div className="matrix-cell cell-fn">
               <span className="cell-tag">Falso Negativo (FN)</span>
               <span className="cell-number">{matrix.FN}</span>
-              <span className="cell-desc">Aditivos não antecipados (Minimizado pelo KS)</span>
+              <span className="cell-desc">Contratos com aditivo não antecipados</span>
             </div>
 
             <div className="matrix-header-row">Real: SEM ADITIVO (0)</div>
             <div className="matrix-cell cell-fp">
               <span className="cell-tag">Falso Positivo (FP)</span>
               <span className="cell-number">{matrix.FP}</span>
-              <span className="cell-desc">Sem aditivo real, sob monitoramento preventivo</span>
+              <span className="cell-desc">Contratos encaminhados ao monitoramento sem ocorrência posterior de aditivo</span>
             </div>
             <div className="matrix-cell cell-vn">
               <span className="cell-tag">Verdadeiro Negativo (VN)</span>
@@ -66,15 +66,15 @@ export default function ConfusionMatrixCard() {
           <div className="metrics-cards-sidebar">
             <div className="metric-kpi-card highlight-kpi">
               <span className="kpi-label">Sensibilidade (Recall)</span>
-              <span className="kpi-value">76,12%</span>
-              <span className="kpi-formula">VP / (VP + FN) = 517 / 679</span>
+              <span className="kpi-value">75,00%</span>
+              <span className="kpi-formula">VP / (VP + FN) = 510 / 680</span>
               <p className="kpi-meaning">Capacidade do modelo de capturar contratos que sofreram aditamento.</p>
             </div>
 
             <div className="metric-kpi-card">
               <span className="kpi-label">Precisão (Precision)</span>
-              <span className="kpi-value">75,00%</span>
-              <span className="kpi-formula">VP / (VP + FP) = 517 / 684</span>
+              <span className="kpi-value">76,12%</span>
+              <span className="kpi-formula">VP / (VP + FP) = 510 / 670</span>
               <p className="kpi-meaning">Proporção de acertos quando o modelo emite alerta de aditivo.</p>
             </div>
 
@@ -88,15 +88,15 @@ export default function ConfusionMatrixCard() {
             <div className="metric-kpi-card">
               <span className="kpi-label">Especificidade</span>
               <span className="kpi-value">66,53%</span>
-              <span className="kpi-formula">VN / (VN + FP) = 312 / 479</span>
+              <span className="kpi-formula">VN / (VN + FP) = 318 / 478</span>
               <p className="kpi-meaning">Identificação correta de contratos executados no escopo original.</p>
             </div>
 
             <div className="metric-kpi-card">
               <span className="kpi-label">Acurácia Geral</span>
               <span className="kpi-value">71,50%</span>
-              <span className="kpi-formula">(VP + VN) / Total = 829 / 1158</span>
-              <p className="kpi-meaning">Proporção total de acertos em todo o conjunto de teste cego.</p>
+              <span className="kpi-formula">(VP + VN) / Total = 828 / 1158</span>
+              <p className="kpi-meaning">Proporção total de acertos em todo o conjunto de teste independente.</p>
             </div>
 
             <div className="metric-kpi-card">
@@ -141,24 +141,27 @@ export default function ConfusionMatrixCard() {
               </tbody>
             </table>
           </div>
+          <p style={{ marginTop: '10px', fontSize: '0.84rem', color: 'var(--text-dim)', fontStyle: 'italic' }}>
+            A proximidade da ROC-AUC entre validação (0,7587) e teste independente (0,7652) indica estabilidade da capacidade discriminativa do modelo em dados não utilizados no ajuste.
+          </p>
         </div>
 
         {/* Diagnósticos Gráficos Oficiais: KS e Matriz de Confusão */}
         <div style={{ marginTop: '36px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h3 className="card-subtitle" style={{ margin: 0 }}>📈 Diagnósticos Gráficos: Calibração KS & Matriz de Confusão</h3>
+            <h3 className="card-subtitle" style={{ margin: 0 }}>📈 Diagnósticos Gráficos: Seleção do Limiar KS & Matriz de Confusão</h3>
             <span className="badge badge-champion">classificacao_graficos/</span>
           </div>
           <p className="section-desc" style={{ marginTop: '6px' }}>
-            Gráficos gerados pelo script <code>training_random_forest_ab4.py</code> para comprovação da calibração pelo corte Max KS e distribuição da amostra cega de teste.
+            Gráficos gerados pelo script <code>training_random_forest_ab4.py</code> para seleção do ponto de corte Max KS e avaliação no conjunto de teste independente.
           </p>
 
           <div className="charts-gallery-grid">
             {/* Gráfico 1: Curva KS */}
             <div className="chart-card">
               <div className="chart-card-header">
-                <span className="chart-card-title">1. Curva de Otimização Kolmogorov-Smirnov (Validação)</span>
-                <span className="badge" style={{ backgroundColor: '#1e293b' }}>Limiar Ótimo: 0,4540</span>
+                <span className="chart-card-title">1. Seleção do Limiar por Kolmogorov-Smirnov (Validação)</span>
+                <span className="badge" style={{ backgroundColor: '#1e293b' }}>Limiar Selecionado: 0,4540</span>
               </div>
               <div className="chart-img-container">
                 <img
@@ -178,14 +181,14 @@ export default function ConfusionMatrixCard() {
                 </a>
               </div>
               <p className="chart-card-caption">
-                Ponto de máxima separação estatística entre a taxa de verdadeiros positivos (TPR) e falsos positivos (FPR). O corte ótimo foi fixado em <strong>0,4540</strong> (Max KS = 0,4019), maximizando a cobertura preventiva.
+                O gráfico apresenta a seleção do limiar no conjunto de validação. O ponto de corte 0,4540 foi escolhido por maximizar a diferença entre a taxa de verdadeiros positivos (TPR) e a taxa de falsos positivos (FPR), resultando em Max KS de 0,4019. Esse limiar foi aplicado, sem novo ajuste, ao conjunto de teste independente.
               </p>
             </div>
 
             {/* Gráfico 2: Matriz de Confusão Heatmap */}
             <div className="chart-card">
               <div className="chart-card-header">
-                <span className="chart-card-title">2. Matriz de Confusão Oficial (Teste Cego N=1.158)</span>
+                <span className="chart-card-title">2. Matriz de Confusão Oficial (Teste Independente N=1.158)</span>
                 <span className="badge" style={{ backgroundColor: '#1e293b' }}>Acurácia: 71,50%</span>
               </div>
               <div className="chart-img-container">
@@ -206,19 +209,19 @@ export default function ConfusionMatrixCard() {
                 </a>
               </div>
               <p className="chart-card-caption">
-                Heatmap de contagens absolutas e proporções normalizadas do teste cego: <strong>517 Verdadeiros Positivos (76,1%)</strong> e <strong>312 Verdadeiros Negativos (66,5%)</strong> sob o corte calibrado.
+                No teste independente, o modelo identificou corretamente 510 contratos com aditivo e 318 contratos sem aditivo. Foram observados 170 falsos negativos, contratos com aditivo não antecipados, e 160 falsos positivos, contratos encaminhados ao monitoramento preventivo sem ocorrência posterior de aditivo.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Guardrail Teórico Kolmogorov-Smirnov */}
+        {/* Justificativa Metodológica Kolmogorov-Smirnov */}
         <div className="callout-box" style={{ marginTop: '28px' }}>
           <div className="callout-icon">📐</div>
           <div>
-            <h4 className="callout-title">Por que calibrar pelo Máximo Kolmogorov-Smirnov (Max KS)?</h4>
+            <h4 className="callout-title">Critério de Seleção do Limiar por Máximo Kolmogorov-Smirnov (Max KS)</h4>
             <p className="callout-text">
-              Em problemas de risco de crédito e governança contratual, o corte padrão ingênuo de 0,50 desconsidera o custo assimétrico entre deixar passar um contrato de alto risco (Falso Negativo) versus realizar auditoria preventiva em contrato regular (Falso Positivo). O método de <strong>Kolmogorov-Smirnov</strong> localiza o ponto onde a distância entre a distribuição acumulada de contratos com aditivo (TPR) e sem aditivo (FPR) é máxima ($KS = 0,4019$). Esse ponto ótimo ocorreu em <strong>0,4540</strong>, elevando o recall no teste cego para <strong>76,12%</strong> com precisão de <strong>75,00%</strong>.
+              O limiar padrão de 0,50 nem sempre produz a melhor separação entre contratos com e sem aditivo. O critério de Máximo KS identifica, no conjunto de validação, o ponto em que a diferença entre a taxa de verdadeiros positivos e a taxa de falsos positivos é máxima. Para o Random Forest — Abordagem 4, o limiar selecionado foi 0,4540 (Max KS = 0,4019). Aplicado ao teste independente, resultou em Recall de 75,00%, Precisão de 76,12%, Especificidade de 66,53% e Acurácia de 71,50%.
             </p>
           </div>
         </div>
