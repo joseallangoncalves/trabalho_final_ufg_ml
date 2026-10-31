@@ -41,24 +41,20 @@ export default function ConfusionMatrixCard() {
             <div className="matrix-cell cell-vp">
               <span className="cell-tag">Verdadeiro Positivo (VP)</span>
               <span className="cell-number">{matrix.VP}</span>
-              <span className="cell-desc">Aditivos detectados preventivamente em T₀</span>
             </div>
             <div className="matrix-cell cell-fn">
               <span className="cell-tag">Falso Negativo (FN)</span>
               <span className="cell-number">{matrix.FN}</span>
-              <span className="cell-desc">Contratos com aditivo não antecipados</span>
             </div>
 
             <div className="matrix-header-row">Real: SEM ADITIVO (0)</div>
             <div className="matrix-cell cell-fp">
               <span className="cell-tag">Falso Positivo (FP)</span>
               <span className="cell-number">{matrix.FP}</span>
-              <span className="cell-desc">Contratos encaminhados ao monitoramento sem ocorrência posterior de aditivo</span>
             </div>
             <div className="matrix-cell cell-vn">
               <span className="cell-tag">Verdadeiro Negativo (VN)</span>
               <span className="cell-number">{matrix.VN}</span>
-              <span className="cell-desc">Execuções regulares confirmadas</span>
             </div>
           </div>
 
