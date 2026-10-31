@@ -20,8 +20,6 @@ export default function Header({ activeTab, setActiveTab }) {
           <div>
             <div className="tags-row">
               <span className="badge badge-champion">🏆 Modelo Campeão: Random Forest</span>
-              <span className="badge badge-lgpd">🛡️ LGPD Compliant</span>
-              <span className="badge badge-ufg">🎓 UFG / INF • Prof. Dr. Ronaldo Martins</span>
             </div>
             <h1 className="header-title">Predição de Aditivos em Contratos da Petrobras</h1>
             <p className="header-subtitle">
