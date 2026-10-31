@@ -66,7 +66,7 @@ export default function DatasetEDAView() {
       decision: 'Foram avaliadas transformações e métodos de escalonamento, incluindo alternativas robustas. O MinMaxScaler apresentou o melhor resultado para a segmentação e foi aplicado exclusivamente no K-Means, evitando que variáveis monetárias dominassem o cálculo das distâncias euclidianas.'
     },
     {
-      finding: 'Salto das medianas em contratos aditivados: aproximadamente cinco vezes maior no valor e 33% maior na duração planejada',
+      finding: 'Diferenças das medianas em contratos com aditivos, por exemplo aproximadamente cinco vezes maior no valor',
       decision: 'Priorização das variáveis de valor e vigência na classificação, por seu maior potencial de separar contratos com e sem aditivo.'
     },
     {
