@@ -308,49 +308,18 @@ class ContractPredictor:
                 "são suficientes para garantir a boa execução contratual."
             )
 
-        # Fatores explicativos
+        # Fatores explicativos (Mantendo apenas a análise do prazo)
         fatores: List[ContributingFactor] = []
-        if contract.duracao_planejada_dias >= 365:
-            dias_formatado = f"{contract.duracao_planejada_dias:,}".replace(",", ".")
-            fatores.append(
-                ContributingFactor(
-                    feature="Duração Contratual Longa",
-                    impacto_direcao="Aumenta Risco",
-                    descricao=f"O prazo de {dias_formatado} dias contribuiu para uma maior probabilidade estimada de aditivo neste contrato.",
-                )
+        dias_formatado = f"{contract.duracao_planejada_dias:,}".replace(",", ".")
+        fatores.append(
+            ContributingFactor(
+                feature="Duração Contratual Longa" if contract.duracao_planejada_dias >= 365 else "Prazo Reduzido",
+                impacto_direcao="Aumenta Risco" if contract.duracao_planejada_dias >= 365 else "Reduz Risco",
+                descricao=f"O prazo de {dias_formatado} dias contribuiu para uma maior probabilidade estimada de aditivo neste contrato."
+                if contract.duracao_planejada_dias >= 365
+                else f"O prazo de {dias_formatado} dias apresenta menor índice de prorrogações contratuais.",
             )
-        if contract.Valor_Original > 10000000.0:
-            fatores.append(
-                ContributingFactor(
-                    feature="Elevado Montante Financeiro",
-                    impacto_direcao="Aumenta Risco",
-                    descricao=f"Contrato de R$ {contract.Valor_Original:,.2f} possui alto impacto orçamentário e maior complexidade de medição.",
-                )
-            )
-        if tx_adit >= 0.50:
-            fatores.append(
-                ContributingFactor(
-                    feature="Histórico Recorrente de Aditivos",
-                    impacto_direcao="Aumenta Risco",
-                    descricao=f"Fornecedor apresenta taxa histórica geral de {tx_adit:.1%} de contratos aditivados nos últimos 5 anos.",
-                )
-            )
-        elif fl_sem_hist == 1:
-            fatores.append(
-                ContributingFactor(
-                    feature="Fornecedor Novo na Organização",
-                    impacto_direcao="Risco Neutro/Incerteza",
-                    descricao="Fornecedor sem histórico registrado na Petrobras nos 5 anos anteriores (fl_sem_historico_5a = 1).",
-                )
-            )
-        else:
-            fatores.append(
-                ContributingFactor(
-                    feature="Histórico Estável de Execução",
-                    impacto_direcao="Reduz Risco",
-                    descricao=f"Baixa incidência histórica de aditivos ({tx_adit:.1%}) e maturidade nas entregas anteriores.",
-                )
-            )
+        )
 
         return PredictionResponseSchema(
             previsao_aditivo=previsao_binaria,
