@@ -31,6 +31,7 @@ export default function App() {
           </p>
           <p className="footer-sub">
             Instituto de Informática (INF) — Universidade Federal de Goiás (UFG) • Prof. Dr. Ronaldo Martins da Costa
+          </p>
         </div>
       </footer>
     </div>
